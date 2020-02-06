@@ -14,6 +14,7 @@ import tech.mlsql.serviceframework.platform.{PluginItem, PluginType}
  */
 class DownloadPluginAction extends CustomAction with Logging {
   override def run(params: Map[String, String]): String = {
+    print("----------")
     // local/hdfs
     params.getOrElse("downloadType", "local") match {
       case "local" =>
