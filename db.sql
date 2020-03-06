@@ -5,6 +5,8 @@ CREATE TABLE `plugin_store_item` (
   `name` varchar(256) DEFAULT NULL,
   `path` text,
   `version` varchar(256) DEFAULT NULL,
+  `plugin_type` int(11) DEFAULT NULL,
+  `extra_params` text,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
