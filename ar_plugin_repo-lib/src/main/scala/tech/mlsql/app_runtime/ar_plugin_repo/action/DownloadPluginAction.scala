@@ -44,6 +44,8 @@ class DownloadPluginAction extends CustomAction with Logging {
     val pluginInfo = pluginInfoOpt.head
 
     try {
+      response.httpServletResponse.setStatus(200)
+      response.httpServletResponse.setContentType("application/octet-stream")
       DownloadFileUtils.getFileByPath(response.httpServletResponse(), pluginInfo.path)
     } catch {
       case e: Exception if !e.isInstanceOf[RenderFinish] =>

@@ -35,6 +35,10 @@ object ArPluginRepoService {
     repo
   }
 
+  def listPlugins = {
+    ctx.run(ctx.query[PluginStoreItem]).toList
+  }
+
   def findPlugin(pluginName: String, version: String, pluginType: StorePluginType) = {
     ctx.run(findPluginCriteria(pluginName, version, pluginType)).headOption
   }
@@ -61,7 +65,7 @@ object ArPluginRepoService {
     }
 
     val criteria = findPluginCriteria(pluginName, version, pluginType)
-    val userStr = UserSystemActionProxy.proxy.run(UserQuery.action, Map("name" -> user))
+    val userStr = UserSystemActionProxy.proxy.run(UserQuery.action, Map("userName" -> user))
     val userRef = JSONTool.parseJson[List[User]](userStr).head
     ctx.run(
       criteria

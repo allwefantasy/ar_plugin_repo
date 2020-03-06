@@ -1,7 +1,6 @@
 package tech.mlsql.app_runtime.ar_plugin_repo;
 
-import org.apache.commons.compress.archivers.ArchiveOutputStream;
-import org.apache.commons.compress.archivers.tar.TarArchiveOutputStream;
+import org.apache.commons.io.IOUtils;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
@@ -9,8 +8,6 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 31/1/2020 WilliamZhu(allwefantasy@gmail.com)
@@ -24,22 +21,19 @@ public class DownloadFileUtils {
         String[] fileChunk = pathStr.split("/");
         response.setContentType("application/octet-stream");
         //response.setHeader("Transfer-Encoding", "chunked");
+        response.setContentLength((int)(new File(pathStr).length()));
         response.setHeader(HEADER_KEY, HEADER_VALUE + "\"" + URLEncoder.encode(fileChunk[fileChunk.length - 1], "utf-8") + "\"");
-
-
+        InputStream inputStream = null;
+        OutputStream outputStream = null;
         try {
-            OutputStream outputStream = response.getOutputStream();
-
-            ArchiveOutputStream tarOutputStream = new TarArchiveOutputStream(outputStream);
-
-            List<File> files = new ArrayList<File>();
-
-            InputStream inputStream = new FileInputStream(pathStr);
+            outputStream = response.getOutputStream();
+            inputStream = new FileInputStream(pathStr);
             org.apache.commons.io.IOUtils.copyLarge(inputStream, outputStream);
-
         } catch (Exception e) {
             throw e;
-
+        } finally {
+            IOUtils.closeQuietly(outputStream);
+            IOUtils.closeQuietly(inputStream);
         }
     }
 }

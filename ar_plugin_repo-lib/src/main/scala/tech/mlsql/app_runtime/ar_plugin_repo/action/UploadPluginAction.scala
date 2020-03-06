@@ -4,7 +4,8 @@ import java.io.File
 
 import org.apache.commons.fileupload.FileItem
 import org.apache.commons.io.FileUtils
-import tech.mlsql.app_runtime.ar_plugin_repo.quill_model.StorePluginType
+import tech.mlsql.app_runtime.ar_plugin_repo.action.UploadPluginAction.Params
+import tech.mlsql.app_runtime.ar_plugin_repo.quill_model.{MLSQLPluginExtraParams, StorePluginType}
 import tech.mlsql.app_runtime.commons.{FormParams, Input}
 import tech.mlsql.app_runtime.plugin.user.action.BaseAction
 import tech.mlsql.common.utils.log.Logging
@@ -45,7 +46,7 @@ class UploadPluginAction extends BaseAction with Logging {
           FileUtils.copyInputStreamToFile(fileContent, targetPath)
           fileContent.close()
           val version = versionOpt.getOrElse(tempFilePath.split("/").last.split("-").last.dropRight(4))
-          ArPluginRepoService.saveUploadInfo(userName, pluginName, tempFilePath, version, pluginType, "{}")
+          ArPluginRepoService.saveUploadInfo(userName, pluginName, tempFilePath, version, pluginType, buildExtraParams(params))
           tempFilePath
 
       }
@@ -54,6 +55,23 @@ class UploadPluginAction extends BaseAction with Logging {
         throw e
     }
     JSONTool.toJsonStr(Map("msg" -> "Upload success"))
+
+  }
+
+  def buildExtraParams(params: Map[String, String]) = {
+    val pluginType = params.get(Params.PLUGIN_TYPE.name).map(f => StorePluginType.from(f)).getOrElse(StorePluginType.APP_RUNTIME_PLUGIN)
+    pluginType match {
+      case StorePluginType.APP_RUNTIME_PLUGIN => "{}"
+      case StorePluginType.MLSQL_PLUGIN =>
+        JSONTool.toJsonStr(MLSQLPluginExtraParams(params("mainClass"),
+          params("author"),
+          params("mlsqlVersions").split(",").toList,
+          System.currentTimeMillis(),
+          params("githubUrl"),
+          params("desc")
+        ))
+    }
+
 
   }
 
@@ -67,7 +85,7 @@ class UploadPluginAction extends BaseAction with Logging {
 object UploadPluginAction {
 
   object Params {
-    val USER_NAME = Input("name", "")
+    val USER_NAME = Input("userName", "")
     val PLUGIN_NAME = Input("pluginName", "")
     val PLUGIN_TYPE = Input("pluginType", "")
     val PLUGIN_VERSION = Input("version", "")

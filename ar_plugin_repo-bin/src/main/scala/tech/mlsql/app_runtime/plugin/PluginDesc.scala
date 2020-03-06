@@ -1,13 +1,14 @@
 package tech.mlsql.app_runtime.plugin
 
-import tech.mlsql.app_runtime.ar_plugin_repo.action.{DownloadPluginAction, UploadPluginAction}
+import tech.mlsql.app_runtime.ar_plugin_repo.action.{DownloadPluginAction, ListPluginAction, UploadPluginAction}
 import tech.mlsql.serviceframework.platform.{PluginItem, _}
 
 class PluginDesc extends Plugin {
   override def entries: List[PluginItem] = {
     List(
       UploadPluginAction.plugin,
-      DownloadPluginAction.plugin
+      DownloadPluginAction.plugin,
+      ListPluginAction.plugin
     )
   }
 
