@@ -4,8 +4,6 @@ case class PluginStoreItem(id: Int, name: String, path: String, version: String,
 
 case class PluginUser(id: Int, userId: Int, pluginId: Int, relateType: Int)
 
-// not map for db table
-case class MLSQLPluginExtraParams(mainClass: String, author: String, mlsqlVersions: List[String], createdTime: Long, githubUrl: String, desc: String)
 
 object StorePluginType extends Enumeration {
   type StorePluginType = Value

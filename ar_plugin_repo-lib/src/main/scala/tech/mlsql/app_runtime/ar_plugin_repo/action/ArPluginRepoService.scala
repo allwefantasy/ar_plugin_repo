@@ -71,7 +71,7 @@ object ArPluginRepoService {
       criteria
     ).headOption match {
       case Some(plugin) =>
-        ctx.run(criteria.update(_.path -> lift(jarPath)))
+        ctx.run(criteria.update(_.path -> lift(jarPath), _.extraParams -> lift(extraParams)))
       case None =>
         val pluginId = ctx.run(ctx.query[PluginStoreItem].insert(
           _.name -> lift(pluginName),

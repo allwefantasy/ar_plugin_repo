@@ -1,0 +1,1 @@
+sfcli release --deploy store --mvn mvn --user ${STORE_USER} --password ${STORE_PASSWORD}
