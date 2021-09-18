@@ -5,20 +5,22 @@ import net.csdn.common.jline.ANSI.Renderer.RenderException
 import net.csdn.modules.http.ViewType
 import tech.mlsql.app_runtime.ar_plugin_repo.DownloadFileUtils
 import tech.mlsql.app_runtime.ar_plugin_repo.quill_model.StorePluginType
-import tech.mlsql.serviceframework.platform.form.Input
+import tech.mlsql.app_runtime.user.action.BaseAction
 import tech.mlsql.common.utils.log.Logging
+import tech.mlsql.common.utils.serder.json.JSONTool
 import tech.mlsql.serviceframework.platform.action.file.action.FileDownloadAction
-import tech.mlsql.serviceframework.platform.action.{ActionContext, CustomAction, HttpContext}
+import tech.mlsql.serviceframework.platform.action.{ActionContext, HttpContext}
+import tech.mlsql.serviceframework.platform.form.{FormParams, Input}
 import tech.mlsql.serviceframework.platform.{PluginItem, PluginType}
 
 /**
  * 30/1/2020 WilliamZhu(allwefantasy@gmail.com)
  */
-class DownloadPluginAction extends CustomAction with Logging {
+class DownloadPluginAction extends BaseAction with Logging {
 
   import DownloadPluginAction._
 
-  override def run(params: Map[String, String]): String = {
+  override def _run(params: Map[String, String]): String = {
     // local/hdfs
     params.getOrElse("downloadType", "local") match {
       case "local" =>
@@ -28,6 +30,10 @@ class DownloadPluginAction extends CustomAction with Logging {
         new FileDownloadAction().hdfsDownload(params)
         throw new RenderException("")
     }
+  }
+
+  override def _help(): String = {
+    JSONTool.toJsonStr(FormParams.toForm(DownloadPluginAction.Params).toList.reverse)
   }
 
   def localDownLoad(params: Map[String, String]) = {

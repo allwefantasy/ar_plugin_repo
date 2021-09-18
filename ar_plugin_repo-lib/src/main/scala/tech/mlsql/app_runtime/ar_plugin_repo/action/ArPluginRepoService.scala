@@ -7,9 +7,9 @@ import tech.mlsql.app_runtime.ar_plugin_repo.quill_model.StorePluginType.StorePl
 import tech.mlsql.app_runtime.ar_plugin_repo.quill_model.{PluginStoreItem, PluginUser, PluginUserRelateType}
 import tech.mlsql.app_runtime.db.quill_model.DictType
 import tech.mlsql.app_runtime.db.service.BasicDBService
-import tech.mlsql.app_runtime.plugin.user.Session
-import tech.mlsql.app_runtime.plugin.user.action.{IsLoginAction, UserQuery, UserSystemActionProxy}
-import tech.mlsql.app_runtime.plugin.user.quill_model.User
+import tech.mlsql.app_runtime.user.Session
+import tech.mlsql.app_runtime.user.action.{IsLoginAction, UserQuery, UserSystemActionProxy}
+import tech.mlsql.app_runtime.user.quill_model.User
 import tech.mlsql.common.utils.serder.json.JSONTool
 
 /**

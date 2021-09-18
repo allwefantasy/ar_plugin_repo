@@ -14,7 +14,7 @@ class ListPluginAction extends BaseAction {
   }
 
   override def _help(): String = {
-    JSONTool.toJsonStr(FormParams.toForm(DownloadPluginAction.Params).toList.reverse)
+    JSONTool.toJsonStr(FormParams.toForm(ListPluginAction.Params).toList.reverse)
   }
 }
 
