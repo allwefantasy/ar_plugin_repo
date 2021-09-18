@@ -9,11 +9,13 @@ object StorePluginType extends Enumeration {
   type StorePluginType = Value
   val MLSQL_PLUGIN = Value(0)
   val APP_RUNTIME_PLUGIN = Value(1)
+  val MLSQL_SCRIPT = Value(2)
 
   def from(str: String) = {
     str match {
       case "MLSQL_PLUGIN" => StorePluginType.MLSQL_PLUGIN
       case "APP_RUNTIME_PLUGIN" => StorePluginType.APP_RUNTIME_PLUGIN
+      case "MLSQL_SCRIPT" => StorePluginType.MLSQL_SCRIPT
     }
   }
 }

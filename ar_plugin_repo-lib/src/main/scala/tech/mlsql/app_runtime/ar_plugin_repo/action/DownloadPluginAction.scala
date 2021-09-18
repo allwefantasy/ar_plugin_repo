@@ -5,7 +5,7 @@ import net.csdn.common.jline.ANSI.Renderer.RenderException
 import net.csdn.modules.http.ViewType
 import tech.mlsql.app_runtime.ar_plugin_repo.DownloadFileUtils
 import tech.mlsql.app_runtime.ar_plugin_repo.quill_model.StorePluginType
-import tech.mlsql.app_runtime.commons.Input
+import tech.mlsql.serviceframework.platform.form.Input
 import tech.mlsql.common.utils.log.Logging
 import tech.mlsql.serviceframework.platform.action.file.action.FileDownloadAction
 import tech.mlsql.serviceframework.platform.action.{ActionContext, CustomAction, HttpContext}

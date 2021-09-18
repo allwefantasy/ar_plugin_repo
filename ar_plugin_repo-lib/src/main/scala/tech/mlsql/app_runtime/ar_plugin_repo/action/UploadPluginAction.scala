@@ -6,8 +6,8 @@ import org.apache.commons.fileupload.FileItem
 import org.apache.commons.io.FileUtils
 import tech.mlsql.app_runtime.ar_plugin_repo.action.UploadPluginAction.Params
 import tech.mlsql.app_runtime.ar_plugin_repo.quill_model.StorePluginType
-import tech.mlsql.app_runtime.commons.{FormParams, Input}
-import tech.mlsql.app_runtime.plugin.user.action.BaseAction
+import tech.mlsql.serviceframework.platform.form.{FormParams, Input}
+import tech.mlsql.app_runtime.user.action.BaseAction
 import tech.mlsql.common.utils.log.Logging
 import tech.mlsql.common.utils.path.PathFun
 import tech.mlsql.common.utils.serder.json.JSONTool

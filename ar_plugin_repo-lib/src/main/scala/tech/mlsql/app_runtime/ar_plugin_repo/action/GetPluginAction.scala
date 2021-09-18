@@ -3,8 +3,8 @@ package tech.mlsql.app_runtime.ar_plugin_repo.action
 import tech.mlsql.app_runtime.ar_plugin_repo.PluginDB.ctx
 import tech.mlsql.app_runtime.ar_plugin_repo.PluginDB.ctx._
 import tech.mlsql.app_runtime.ar_plugin_repo.quill_model.{PluginStoreItem, StorePluginType}
-import tech.mlsql.app_runtime.commons.{FormParams, Input, KV, Select}
-import tech.mlsql.app_runtime.plugin.user.action.BaseAction
+import tech.mlsql.serviceframework.platform.form.{FormParams, Input, KV, Select}
+import tech.mlsql.app_runtime.user.action.BaseAction
 import tech.mlsql.common.utils.serder.json.JSONTool
 import tech.mlsql.serviceframework.platform.{PluginItem, PluginType}
 
@@ -48,7 +48,8 @@ object GetPluginAction {
     val PLUGIN_TYPE = Select("pluginType", List(), valueProvider = Option(() => {
       List(
         KV(Option("MLSQL"), Option("MLSQL_PLUGIN")),
-        KV(Option("APP_RUNTIME"), Option("APP_RUNTIME_PLUGIN"))
+        KV(Option("APP_RUNTIME"), Option("APP_RUNTIME_PLUGIN")),
+        KV(Option("SCRIPT"), Option("MLSQL_SCRIPT"))
       )
     }))
     val PLUGIN_VERSION = Input("version", "")

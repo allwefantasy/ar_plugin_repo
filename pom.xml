@@ -7,7 +7,7 @@
     <groupId>tech.mlsql.serviceframework.baseweb</groupId>
     <artifactId>ar_plugin_repo_2.11</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <modules>
         <module>ar_plugin_repo-lib</module>
         <module>ar_plugin_repo-bin</module>
@@ -18,11 +18,11 @@
         <scala.version>2.11.8</scala.version>
         <scala.binary.version>2.11</scala.binary.version>
         <scala.jline.version>2.11.0-M3</scala.jline.version>
-        <web-platform-version>0.1.4</web-platform-version>
-        <app_runtime_with_db.version>1.0.0</app_runtime_with_db.version>
-        <user-system.version>1.0.0</user-system.version>
-        <web-platform-commons.version>1.0.0</web-platform-commons.version>
-        <scope>provided</scope>
+        <web-platform-version>0.2.0</web-platform-version>
+        <app_runtime_with_db.version>1.0.1</app_runtime_with_db.version>
+        <user-system.version>1.0.1</user-system.version>
+        <ar_runtime_web_console.version>1.0.1</ar_runtime_web_console.version>
+        
     </properties>
 
     <dependencies>
@@ -30,7 +30,6 @@
             <groupId>tech.mlsql.serviceframework.baseweb</groupId>
             <artifactId>web-platform_${scala.binary.version}</artifactId>
             <version>${web-platform-version}</version>
-            <scope>${scope}</scope>
         </dependency>
         <dependency>
             <groupId>tech.mlsql.serviceframework.baseweb</groupId>
@@ -40,24 +39,18 @@
 
         <dependency>
             <groupId>tech.mlsql.serviceframework.baseweb</groupId>
-            <artifactId>user-system-lib_2.11</artifactId>
+            <artifactId>user-system-lib_${scala.binary.version}</artifactId>
             <version>${user-system.version}</version>
         </dependency>
 
         <dependency>
             <groupId>tech.mlsql.serviceframework.baseweb</groupId>
-            <artifactId>web-platform-commons_${scala.binary.version}</artifactId>
-            <version>${web-platform-commons.version}</version>
+            <artifactId>ar_runtime_web_console-lib_${scala.binary.version}</artifactId>
+            <version>${ar_runtime_web_console.version}</version>
         </dependency>
+        
     </dependencies>
-
-    <profiles>
-        <profile>
-            <id>scope-compile</id>
-            <properties>
-                <scope>compile</scope>
-            </properties>
-        </profile>
+    
         <profile>
             <id>scala-2.11</id>
             <properties>

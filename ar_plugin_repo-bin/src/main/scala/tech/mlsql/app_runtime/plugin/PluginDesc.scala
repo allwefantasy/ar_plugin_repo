@@ -1,6 +1,6 @@
 package tech.mlsql.app_runtime.plugin
 
-import tech.mlsql.app_runtime.ar_plugin_repo.action.{DownloadPluginAction, GetPluginAction, ListPluginAction, UploadPluginAction}
+import tech.mlsql.app_runtime.ar_plugin_repo.action._
 import tech.mlsql.serviceframework.platform.{PluginItem, _}
 
 class PluginDesc extends Plugin {
@@ -9,7 +9,8 @@ class PluginDesc extends Plugin {
       UploadPluginAction.plugin,
       DownloadPluginAction.plugin,
       ListPluginAction.plugin,
-      GetPluginAction.plugin
+      GetPluginAction.plugin,
+      CreateScriptAction.plugin
     )
   }
 
