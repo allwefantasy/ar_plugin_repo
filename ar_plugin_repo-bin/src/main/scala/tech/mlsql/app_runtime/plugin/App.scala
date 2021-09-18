@@ -1,7 +1,5 @@
 package tech.mlsql.app_runtime.plugin
 
-import net.csdn.ServiceFramwork
-import net.csdn.bootstrap.Application
 import tech.mlsql.serviceframework.platform.runtime.BuildInAppRuntime
 
 object App {
@@ -9,7 +7,9 @@ object App {
     BuildInAppRuntime.main(args, List(
       new DBPluginDesc,
       new UserPluginDesc,
-      new ConsolePluginDesc
+      new ConsolePluginDesc,
+      new RepoPluginDesc
+
     ))
   }
 

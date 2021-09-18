@@ -21,8 +21,8 @@
         <web-platform-version>0.2.0</web-platform-version>
         <app_runtime_with_db.version>1.0.1</app_runtime_with_db.version>
         <user-system.version>1.0.1</user-system.version>
-        <ar_runtime_web_console.version>1.0.1</ar_runtime_web_console.version>
-        
+        <ar_runtime_web_console.version>1.0.2</ar_runtime_web_console.version>
+
     </properties>
 
     <dependencies>
@@ -48,9 +48,9 @@
             <artifactId>ar_runtime_web_console-lib_${scala.binary.version}</artifactId>
             <version>${ar_runtime_web_console.version}</version>
         </dependency>
-        
+
     </dependencies>
-    
+    <profiles>
         <profile>
             <id>scala-2.11</id>
             <properties>
